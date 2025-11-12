@@ -4,6 +4,9 @@ import joblib
 import matplotlib.pyplot as plt
 import plotly.express as px
 
+import sklearn
+print('sklearn version', sklearn.__version__)
+
 st.title('Drug Discovery')
 st.write('##### Find out which cell lines are most sensitive to a chosen drug using the dropdown menu below')
 
@@ -14,8 +17,8 @@ st.write('##### Find out which cell lines are most sensitive to a chosen drug us
 # selected_drug = st.selectbox('Select A Drug', drugs)
 
 df = pd.read_csv('../GDSC1and2_w_CellLineData.csv')
-model_ic50 = joblib.load("rf_ic50.pkl")
-model_auc = joblib.load("rf_auc.pkl")
+model_ic50 = joblib.load("dd_rf_ic50.pkl")
+model_auc = joblib.load("dd_rf_auc.pkl")
 
 
 # prepare dropdown options

@@ -5,3 +5,4 @@ joblib
 streamlit
 pyspark
 scikit-learn
+plotly
