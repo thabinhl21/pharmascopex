@@ -3,6 +3,5 @@ numpy
 matplotlib
 joblib
 streamlit
-pyspark
 scikit-learn
 plotly
