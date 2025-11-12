@@ -16,7 +16,7 @@ st.write('##### Find out which cell lines are most sensitive to a chosen drug us
 # dropdown options for drugs
 # selected_drug = st.selectbox('Select A Drug', drugs)
 
-df = pd.read_csv('../GDSC1and2_w_CellLineData.csv')
+df = pd.read_csv('../CellLine_DrugName.csv')
 model_ic50 = joblib.load("dd_rf_ic50.pkl")
 model_auc = joblib.load("dd_rf_auc.pkl")
 

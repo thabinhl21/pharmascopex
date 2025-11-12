@@ -13,7 +13,7 @@ st.write('##### Find out which drugs are most effective against a chosen cell li
 
 # dropdown options for cell lines
 
-df = pd.read_csv('../GDSC1and2_w_CellLineData.csv')
+df = pd.read_csv('../CellLine_DrugName.csv')
 model_ic50 = joblib.load("dd_rf_ic50.pkl")
 model_auc = joblib.load("dd_rf_auc.pkl")
 
