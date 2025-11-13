@@ -12,13 +12,26 @@
     <strong>An interactive, dual-metric ML engine for preclinical drug sensitivity prediction</strong>
 </p>
 
+<!-- tech stack banners -->
 <p align="center">
-    <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" height="32"/>
-    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" height="32"/>
-    <img src="https://img.shields.io/badge/scikit--learn-F7931E?logo=scikit-learn&logoColor=white" height="32"/>
-    <img src="https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white" height="32"/>
-    <img src="https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white" height="32"/>
-    <img src="https://img.shields.io/badge/Plotly-3C4DBD?logo=plotly&logoColor=white" height="32"/>
+  <a href="https://www.python.org/">
+      <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" height="35"/>
+  </a>
+  <a href="https://streamlit.io/">
+      <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" height="35"/>
+  </a>
+  <a href="https://scikit-learn.org/">
+      <img src="https://img.shields.io/badge/scikit--learn-F7931E?logo=scikit-learn&logoColor=white" height="35"/>
+  </a>
+  <a href="https://pandas.pydata.org/">
+      <img src="https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white" height="35"/>
+  </a>
+  <a href="https://numpy.org/">
+      <img src="https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white" height="35"/>
+  </a>
+  <a href="https://plotly.com/">
+      <img src="https://img.shields.io/badge/Plotly-3C4DBD?logo=plotly&logoColor=white" height="35"/>
+  </a>
 </p>
 
 ---
