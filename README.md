@@ -58,7 +58,7 @@ PharmaScopeX aims to make early-stage exploration **simple, visual, and intuitiv
 
 ### 1. Clone the repository
 ```
-git clone --recursive <repository-url>
+git clone --recursive https://github.com/thabinhl21/pharmascopex.git
 ```
 
 ### 2. Create a virtual environment and activate the environment
