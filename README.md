@@ -13,12 +13,12 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" height="28"/>
-    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" height="28"/>
-    <img src="https://img.shields.io/badge/scikit--learn-F7931E?logo=scikit-learn&logoColor=white" height="28"/>
-    <img src="https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white" height="28"/>
-    <img src="https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white" height="28"/>
-    <img src="https://img.shields.io/badge/Plotly-3C4DBD?logo=plotly&logoColor=white" height="28"/>
+    <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" height="32"/>
+    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" height="32"/>
+    <img src="https://img.shields.io/badge/scikit--learn-F7931E?logo=scikit-learn&logoColor=white" height="32"/>
+    <img src="https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white" height="32"/>
+    <img src="https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white" height="32"/>
+    <img src="https://img.shields.io/badge/Plotly-3C4DBD?logo=plotly&logoColor=white" height="32"/>
 </p>
 
 ---
