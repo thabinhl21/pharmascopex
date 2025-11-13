@@ -12,7 +12,7 @@ These two predictions are combined into an interactive Pareto-style scatter plot
 2. Drug Discovery Mode: Discover which cell lines are most sensitive to a chosen drug
 
 ## Purpose
-This tool is strictly for preclinical, educational, and exploratory purposes. It is not intended to be provide medical or clinical recommendations. 
+This tool is strictly for preclinical, educational, and exploratory purposes. It is not intended to provide medical or clinical recommendations. 
 
 ## Installation/Usage
 
