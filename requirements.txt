@@ -5,3 +5,4 @@ joblib
 streamlit
 scikit-learn
 plotly
+gdown
