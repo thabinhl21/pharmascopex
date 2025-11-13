@@ -77,7 +77,14 @@ git clone --recursive https://github.com/thabinhl21/pharmascopex.git
 ### 2. Create a virtual environment and activate the environment
 ```
 python -m venv venv
+```
+for MAC:
+```
 source venv/bin/activate
+```
+for Windows:
+```
+.\venv\Scripts\Activate.ps1
 ```
 
 ### 3. Install dependencies
