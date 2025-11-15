@@ -29,7 +29,7 @@ def load_auc_model():
 model_ic50 = load_ic50_model()
 model_auc = load_auc_model()
 
-df = pd.read_csv('../CellLine_DrugName.csv')
+df = pd.read_csv('visualization/CellLine_DrugName.csv')
 # model_ic50 = joblib.load("dd_rf_ic50.pkl")
 # model_auc = joblib.load("dd_rf_auc.pkl")
 
