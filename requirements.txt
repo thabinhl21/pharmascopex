@@ -1,10 +1,5 @@
-pandas==2.3.3
-scikit-learn==1.6.1
-scipy==1.13.1
-matplotlib==3.9.4
-gdown==5.2.0
-joblib==1.5.2
-pillow==11.3.0
-plotly==6.4.0
-pyarrow==13.0.0
-streamlit==1.50.0
+pandas
+plotly
+joblib
+gdown
+streamlit
