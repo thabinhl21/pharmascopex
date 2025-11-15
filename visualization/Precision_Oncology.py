@@ -5,8 +5,11 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import gdown
 
+
 st.title('Precision Oncology')
 st.write('##### Find out which drugs are most effective against a chosen cell line using the dropdown menu below')
+
+df = pd.read_csv('visualization/CellLine_DrugName.csv')
 
 
 # download pkl files (models) from google drive
@@ -29,12 +32,6 @@ def load_auc_model():
 
 model_ic50 = load_ic50_model()
 model_auc = load_auc_model()
-
-
-df = pd.read_csv('../CellLine_DrugName.csv')
-# model_ic50 = joblib.load("dd_rf_ic50.pkl")
-# model_auc = joblib.load("dd_rf_auc.pkl")
-
 
 # prepare dropdown options
 cell_mapping = df[['CELL_LINE_NAME', 'COSMIC_ID']].dropna().drop_duplicates()
