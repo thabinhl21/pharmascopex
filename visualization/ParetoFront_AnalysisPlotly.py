@@ -3,7 +3,6 @@ import plotly.graph_objects as go
 import plotly.io as pio
 from typing import Tuple
 
-
 def plot_pareto_front_analysis(IC50, AUC, 
                                minimize_IC50=True,
                                maximize_AUC=True,
@@ -29,30 +28,36 @@ def plot_pareto_front_analysis(IC50, AUC,
     
     # Minimize IC50 (lower is better) and maximize AUC (higher is better)
     
-    # Sort by IC50 first for better performance
-    sorted_order = np.argsort(IC50)
-    sorted_IC50 = IC50[sorted_order]
-    sorted_AUC = AUC[sorted_order]
-    
-    # Find Pareto front: iterate through sorted points, keep track of best AUC seen
-    pareto_mask = []
-    max_auc_so_far = -np.inf
-    
-    for i in range(len(sorted_IC50)):
-        # Since sorted by IC50 (ascending), current point has IC50 >= all previous
-        # It's on Pareto front if its AUC is better than all points with lower IC50
-        if sorted_AUC[i] > max_auc_so_far:
-            pareto_mask.append(True)
-            max_auc_so_far = sorted_AUC[i]
-        else:
-            pareto_mask.append(False)
-    
-    pareto_mask = np.array(pareto_mask)
-    
-    # Extract Pareto points (already sorted by IC50)
-    pareto_IC50 = sorted_IC50[pareto_mask]
-    pareto_AUC = sorted_AUC[pareto_mask]
-    pareto_indices = sorted_order[pareto_mask]
+    ### CORRECTION: minimize IC50 and maximize AUC
+    pareto_mask = np.zeros(len(IC50), dtype=bool)
+
+    for i in range(len(IC50)):
+        dominant = False
+        for j in range(len(IC50)):
+            if j == i:
+                continue
+
+            # j dominates i if
+            ### ic50_j < ic50_i (better potency)
+            ### AUC_j > AUC_i (better efficiacy)
+            if (IC50[j] < IC50[i]) and (AUC[j] > AUC[i]):
+                dominant = True
+                break
+
+        if not dominant:
+            pareto_mask[i] = True
+
+    # extract Pareto points (unsorted)
+    pareto_indices = np.where(pareto_mask)[0]
+    pareto_IC50 = IC50[pareto_indices]
+    pareto_AUC = AUC[pareto_indices]
+
+    # sort Pareto front by IC50 for plotting
+    sort_order = np.argsort(pareto_IC50)
+    pareto_IC50 = pareto_IC50[sort_order]
+    pareto_AUC = pareto_AUC[sort_order]
+    pareto_indices   = pareto_indices[sort_order]
+    ### CORRECTION END
     
     # Get Dominated point. These are points with HIGHER IC50 (worse) and LOWER AUC (worse) than at least one Pareto point
     dominated_mask = np.zeros(len(IC50), dtype=bool)
@@ -156,13 +161,13 @@ def plot_pareto_front_analysis(IC50, AUC,
     fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
     
-    if show_plot:
-        # Save to HTML file and open in browser
-        import os
-        html_file = 'pareto_front_plot.html'
-        fig.write_html(html_file, auto_open=True)
-        print(f"\nPlot saved to {os.path.abspath(html_file)}")
-        print("Opening plot in your default browser...")
+    # if show_plot:
+    #     # Save to HTML file and open in browser
+    #     import os
+    #     html_file = 'pareto_front_plot.html'
+    #     fig.write_html(html_file, auto_open=True)
+    #     print(f"\nPlot saved to {os.path.abspath(html_file)}")
+    #     print("Opening plot in your default browser...")
     
     return fig, pareto_IC50, pareto_AUC, pareto_indices
 

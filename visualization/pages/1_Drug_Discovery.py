@@ -4,6 +4,7 @@ import joblib
 import matplotlib.pyplot as plt
 import plotly.express as px
 import gdown
+from ParetoFront_AnalysisPlotly import plot_pareto_front_analysis
 
 st.title('Drug Discovery')
 st.write('##### Find out which cell lines are most sensitive to a chosen drug using the dropdown menu below')
@@ -62,11 +63,38 @@ else:
         x='Pred_ln_IC50',
         y='Pred_AUC',
         hover_name='CELL_LINE_NAME', 
+        render_mode='svg',
         title=f"{selected_drug_name} — Predicted Drug Response Across Cell Lines",
         labels={
             'Pred_ln_IC50': 'Predicted ln(IC50)',
             'Pred_AUC': 'Predicted AUC'
         }
+    )
+
+
+    # compute Pareto front
+    pareto_fig, pareto_x, pareto_y, pareto_idx = plot_pareto_front_analysis(
+        df_filtered['Pred_ln_IC50'],
+        df_filtered['Pred_AUC'],
+        show_plot=False
+    )
+
+    # add Pareto front line
+    fig.add_scatter(
+        x=pareto_x,
+        y=pareto_y,
+        mode="lines",
+        line=dict(color="red", width=2),
+        name="Pareto Front"
+    )
+
+    # add Pareto front points
+    fig.add_scatter(
+        x=pareto_x,
+        y=pareto_y,
+        mode="markers",
+        marker=dict(size=12, color="orangered", opacity=0.7, line=dict(color='darkred', width=1.5)),
+        name="Pareto Optimal Points"
     )
 
     fig.update_traces(marker=dict(size=8, opacity=0.7))
