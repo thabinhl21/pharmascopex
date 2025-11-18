@@ -96,6 +96,6 @@ pip install -r requirements.txt
 
 ### 4. Run application
 ```
-streamlit run visualization/Precision_Oncology.py
+streamlit run visualization/Drug_Discovery.py
 ```
 
