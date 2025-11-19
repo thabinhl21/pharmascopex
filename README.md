@@ -76,25 +76,12 @@ Before starting, please ensure that you have at least Python 3.9 installed. If n
 git clone --recursive https://github.com/thabinhl21/pharmascopex.git
 ```
 
-### 2. Create a virtual environment and activate the environment
-```
-python -m venv venv
-```
-for MAC:
-```
-source venv/bin/activate
-```
-for Windows:
-```
-.\venv\Scripts\Activate.ps1
-```
-
-### 3. Install dependencies
+### 2. Install dependencies
 ```
 pip install -r requirements.txt
 ```
 
-### 4. Run application
+### 3. Run application
 ```
 streamlit run visualization/Drug_Discovery.py
 ```
