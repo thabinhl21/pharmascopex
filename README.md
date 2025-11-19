@@ -76,7 +76,12 @@ Before starting, please ensure that you have at least Python 3.9 installed. If n
 git clone --recursive https://github.com/thabinhl21/pharmascopex.git
 ```
 
-### 2. Install dependencies
+### 2. Move into the project folder
+```
+cd pharmascopex
+```
+
+### 3. Install dependencies
 ```
 pip install -r requirements.txt
 ```
