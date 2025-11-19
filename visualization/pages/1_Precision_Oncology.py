@@ -7,14 +7,11 @@ from ParetoFront_AnalysisPlotly import plot_pareto_front_analysis
 
 st.set_page_config(layout="wide")
 
-# st.title('Drug Discovery')
-# st.write('##### Find out which cell lines are most sensitive to a chosen drug using the dropdown menu below')
-
 # to center align title and header
 st.markdown(
     """
-    <h1 style='text-align: center; font-size: 42px;'>Drug Discovery</h1>
-    <p style='text-align: center; font-size: 18px;'>Find out which cell lines are most sensitive to a chosen drug using the dropdown menu below</p>
+    <h1 style='text-align: center; font-size: 42px;'>Precision Oncology</h1>
+    <p style='text-align: center; font-size: 18px;'>Find out which drugs are most effective against a chosen cell line using the dropdown menu below</p>
     """,
     unsafe_allow_html=True
 )
@@ -52,15 +49,15 @@ model_sens = load_sens_model()
 df = pd.read_csv('visualization/CellLine_DrugName.csv')
 
 # prepare dropdown options
-drug_mapping = df[['DRUG_NAME', 'DRUG_ID']].dropna().drop_duplicates()
-drug_names = sorted(drug_mapping['DRUG_NAME'].unique())
-selected_drug_name = st.selectbox("Select a Drug", drug_names)
+cell_mapping = df[['CELL_LINE_NAME', 'COSMIC_ID']].dropna().drop_duplicates()
+cell_lines = sorted(cell_mapping['CELL_LINE_NAME'].unique())
+selected_cell_line = st.selectbox("Select a Cell Line", cell_lines)
 
-# match selected drug name to drug_id
-selected_drug_id = drug_mapping.loc[drug_mapping['DRUG_NAME'] == selected_drug_name, 'DRUG_ID'].values[0]
+# match selected cell line to cosmic_id
+selected_cosmic_id = cell_mapping.loc[cell_mapping['CELL_LINE_NAME'] == selected_cell_line, 'COSMIC_ID'].values[0]
 
-# filter dataset for selected drug
-df_filtered = df[df['DRUG_ID'] == selected_drug_id].copy()
+# filter dataset for selected cell line
+df_filtered = df[df['COSMIC_ID'] == selected_cosmic_id].copy()
 
 # predict if there are rows available
 if df_filtered.empty:
@@ -79,9 +76,8 @@ else:
         df_filtered,
         x='Pred_ln_IC50',
         y='Pred_AUC',
-        hover_name='CELL_LINE_NAME', 
+        hover_name='DRUG_NAME', 
         render_mode='svg',
-        # title=f"{selected_drug_name} — Predicted Drug Response Across Cell Lines",
         labels={
             'Pred_ln_IC50': 'Predicted ln(IC50)',
             'Pred_AUC': 'Predicted AUC'
@@ -122,26 +118,16 @@ else:
     # left visualization: scatter plot + pareto front
     with col1:
         st.markdown(
-            f"<h3 style='text-align:center;'>{selected_drug_name} — Predicted Drug Response Across Cell Lines</h3>",
+            f"<h3 style='text-align:center;'>{selected_cell_line} — Predicted Cell Line Sensitivity Across Drugs</h3>",
             unsafe_allow_html=True
         )
-
-        # fig.update_layout(
-        #     legend=dict(
-        #         orientation="h",
-        #         yanchor="bottom",
-        #         y=-0.2,
-        #         xanchor="center",
-        #         x=0.5
-        #     )
-        # )
 
         st.plotly_chart(fig, use_container_width=True)
 
     # right visualization: bar chart of top 5 cell lines
     cell_scores = (
         df_filtered
-        .groupby('CELL_LINE_NAME', as_index=False)['Sensitivity']
+        .groupby('DRUG_NAME', as_index=False)['Sensitivity']
         .min()
     )
 
@@ -151,9 +137,9 @@ else:
     bar_fig = px.bar(
         top5,
         x='Sensitivity',
-        y='CELL_LINE_NAME',
+        y='DRUG_NAME',
         orientation='h',
-        labels={'Sensitivity': 'Sensitivity Score', 'CELL_LINE_NAME': ''},
+        labels={'Sensitivity': 'Sensitivity Score', 'DRUG_NAME': ''},
     )
 
     # bar_fig.update_traces(textposition='inside', insidetextanchor='middle')
@@ -173,7 +159,7 @@ else:
 
     with col2:
         st.markdown(
-            "<h3 style='text-align:center;'>Top 5 Most Sensitive Cell Lines</h3>",
+            "<h3 style='text-align:center;'>Top 5 Most Sensitive Drugs</h3>",
             unsafe_allow_html=True
         )
         st.plotly_chart(bar_fig, use_container_width=True)
