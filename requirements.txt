@@ -3,4 +3,4 @@ plotly
 joblib
 gdown
 streamlit
-sklearn
+scikit-learn==1.6.1
