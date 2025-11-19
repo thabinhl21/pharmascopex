@@ -1,14 +1,12 @@
 import streamlit as st
 import pandas as pd
 import joblib
+# import onnxruntime as ort
 import plotly.express as px
 import gdown
 from ParetoFront_AnalysisPlotly import plot_pareto_front_analysis
 
 st.set_page_config(layout="wide")
-
-# st.title('Drug Discovery')
-# st.write('##### Find out which cell lines are most sensitive to a chosen drug using the dropdown menu below')
 
 # to center align title and header
 st.markdown(
