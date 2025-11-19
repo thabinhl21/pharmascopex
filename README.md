@@ -69,7 +69,7 @@ PharmaScopeX aims to make early-stage exploration **simple, visual, and intuitiv
 
 ## Installation/Usage
 
-Before starting, please ensure that you have at least Python 3.9 installed. If not, please follow the instructions here to get it installed: https://www.python.org/downloads/
+Before starting, please ensure that you have at least Python 3.9-3.11 installed. If not, please follow the instructions here to get it installed: https://www.python.org/downloads/
 
 ### 1. Clone the repository
 ```
