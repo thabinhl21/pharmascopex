@@ -52,7 +52,7 @@ df = pd.read_csv('visualization/CellLine_DrugName.csv')
 # prepare dropdown options
 cell_mapping = df[['CELL_LINE_NAME', 'COSMIC_ID']].dropna().drop_duplicates()
 cell_lines = sorted(cell_mapping['CELL_LINE_NAME'].unique())
-selected_cell_line = st.selectbox("Select a Cell Line", cell_lines)
+selected_cell_line = st.selectbox("Select a Cell Line: type to search or scroll to browse", cell_lines)
 
 # match selected cell line to cosmic_id
 selected_cosmic_id = cell_mapping.loc[cell_mapping['CELL_LINE_NAME'] == selected_cell_line, 'COSMIC_ID'].values[0]
@@ -118,9 +118,18 @@ else:
 
     # left visualization: scatter plot + pareto front
     with col1:
-        st.markdown(
-            f"<h3 style='text-align:center;'>{selected_cell_line} — Predicted Cell Line Sensitivity Across Drugs</h3>",
-            unsafe_allow_html=True
+        # st.markdown(
+        #     f"<h3 style='text-align:center;'>{selected_cell_line} — Predicted Cell Line Sensitivity Across Drugs</h3>",
+        #     unsafe_allow_html=True
+        # )
+
+        fig.update_layout(
+            margin=dict(t=80),
+            title={
+                'text':f"{selected_cell_line} - Predicted Cell Line Sensitivity Across Drugs",
+                'x': 0.5,
+                'xanchor': 'center'
+            }
         )
 
         st.plotly_chart(fig, use_container_width=True)
@@ -154,14 +163,19 @@ else:
     bar_fig.update_layout(
         height=400,
         width=700,
-        margin=dict(l=30, r=30, t=10, b=30),
-        yaxis=dict(autorange="reversed"),      
+        margin=dict(t=80),
+        yaxis=dict(autorange="reversed"),  
+        title={
+            'text':f"Top 5 Most Sensitive Drugs",
+            'x': 0.5,
+            'xanchor': 'center'
+        }    
     )
 
     with col2:
-        st.markdown(
-            "<h3 style='text-align:center;'>Top 5 Most Sensitive Drugs</h3>",
-            unsafe_allow_html=True
-        )
+        # st.markdown(
+        #     "<h3 style='text-align:center;'>Top 5 Most Sensitive Drugs</h3>",
+        #     unsafe_allow_html=True
+        # )
         st.plotly_chart(bar_fig, use_container_width=True)
 

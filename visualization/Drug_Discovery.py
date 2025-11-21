@@ -52,7 +52,7 @@ df = pd.read_csv('visualization/CellLine_DrugName.csv')
 # prepare dropdown options
 drug_mapping = df[['DRUG_NAME', 'DRUG_ID']].dropna().drop_duplicates()
 drug_names = sorted(drug_mapping['DRUG_NAME'].unique())
-selected_drug_name = st.selectbox("Select a Drug", drug_names)
+selected_drug_name = st.selectbox("Select a Drug: type to search or scroll to browse", drug_names)
 
 # match selected drug name to drug_id
 selected_drug_id = drug_mapping.loc[drug_mapping['DRUG_NAME'] == selected_drug_name, 'DRUG_ID'].values[0]
@@ -119,20 +119,19 @@ else:
 
     # left visualization: scatter plot + pareto front
     with col1:
-        st.markdown(
-            f"<h3 style='text-align:center;'>{selected_drug_name} — Predicted Drug Response Across Cell Lines</h3>",
-            unsafe_allow_html=True
-        )
-
-        # fig.update_layout(
-        #     legend=dict(
-        #         orientation="h",
-        #         yanchor="bottom",
-        #         y=-0.2,
-        #         xanchor="center",
-        #         x=0.5
-        #     )
+        # st.markdown(
+        #     f"<h3 style='text-align:center;'>{selected_drug_name} — Predicted Drug Response Across Cell Lines</h3>",
+        #     unsafe_allow_html=True
         # )
+
+        fig.update_layout(
+            margin=dict(t=80),
+            title={
+                'text':f"{selected_drug_name} - Predicted Drug Response Across Cell Lines",
+                'x': 0.5,
+                'xanchor': 'center'
+            }
+        )
 
         st.plotly_chart(fig, use_container_width=True)
 
@@ -165,14 +164,19 @@ else:
     bar_fig.update_layout(
         height=400,
         width=700,
-        margin=dict(l=30, r=30, t=10, b=30),
-        yaxis=dict(autorange="reversed"),      
+        margin=dict(t=80),
+        yaxis=dict(autorange="reversed"),  
+        title={
+            'text':f"Top 5 Most Sensitive Cell Lines",
+            'x': 0.5,
+            'xanchor': 'center'
+        }
     )
 
     with col2:
-        st.markdown(
-            "<h3 style='text-align:center;'>Top 5 Most Sensitive Cell Lines</h3>",
-            unsafe_allow_html=True
-        )
+        # st.markdown(
+        #     "<h3 style='text-align:center;'>Top 5 Most Sensitive Cell Lines</h3>",
+        #     unsafe_allow_html=True
+        # )
         st.plotly_chart(bar_fig, use_container_width=True)
 
