@@ -180,14 +180,11 @@ else:
         st.plotly_chart(bar_fig, use_container_width=True)
         st.markdown(
             """
-                <p style='font-size:12px; text-align:left;'>
+                <p style='font-size:13px; text-align:right;'>
                 Sensitivity Score: weighted average of ln(IC50) & AUC -> (0.5*ln(IC50) + 0.5*AUC).
-                </p>
-            """
-            """
-                <p style='font-size:12px; text-align:left;'>
+                <br>
                 Lower (more negative) values = higher predicted drug sensitivity for the cell line
-                </p>
+                </br>
             """,
             unsafe_allow_html=True
         )
